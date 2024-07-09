@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000/api'; // URL base de tu backend
+  apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   registerUser(userData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users`, userData, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return this.http.post(`${this.apiUrl}/users`, userData);
   }
 
   loginUser(userData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, userData, {
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return this.http.post(`${this.apiUrl}/login`, userData);
   }
 }
