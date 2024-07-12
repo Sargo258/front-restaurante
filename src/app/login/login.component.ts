@@ -62,7 +62,9 @@ export class LoginComponent {
     setTimeout(() => {
       this.showAlert = false;  // Cerrar el modal después de un tiempo
     }, 1000);
-  
+  }
+  navigateToRegister() {
+    this.router.navigate(['/register']); // Asegúrate de que esta ruta esté configurada
   }
 }
   

@@ -1,0 +1,27 @@
+.gradient-bg {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #f77f00 100%);
+  }
+
+
+.gradient-text {
+    background: linear-gradient(90deg, #c7aa28, #f6a53b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  
+  .card {
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #fcb69f; /* Borde naranja claro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 2rem;
+    border-radius: 0.5rem; /* Bordes redondeados */
+  }
+
+  .card-header {
+    font-size: 2rem; /* Tamaño del título */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
