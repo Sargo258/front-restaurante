@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../components/modal/modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
 
-  constructor( private fb: FormBuilder, private authService : AuthService) {
+  constructor( private fb: FormBuilder, private authService : AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -42,7 +43,7 @@ export class LoginComponent {
       next: (response) => {
         console.log('Login successful', response);
         this.showAlertModal('success', 'Login successful');
-
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('Login failed:', error);

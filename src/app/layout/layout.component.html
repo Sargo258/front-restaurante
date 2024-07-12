@@ -1,0 +1,34 @@
+<div class="layout bg-gray-100 min-h-screen flex flex-col">
+    <header class="bg-orange-500 text-white p-4">
+        <h1 class="text-7xl font-bold">Fast-Food</h1>
+        <div class="flex space-x-10">
+            <p class="text-md">Horario: 10:00 AM - 10:00 PM</p>
+            <p class="text-md">Teléfono: (123) 456-7890</p>
+        </div>
+    </header>
+
+    <nav class="bg-white shadow">
+        <div class="flex justify-end p-4 mr-8">
+            <ul class="flex space-x-10">
+                <li><a routerLink="/dashboard" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
+                <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a>
+                </li>
+                <li><a routerLink="/sobre-nosotros"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre Nosotros</a></li>
+                <li><a routerLink="/contacto"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="flex-grow p-4">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-4">
+        <p class="text-gray-600">Síguenos en redes sociales: [Enlaces]</p>
+        <p><a routerLink="/politica-privacidad" class="text-gray-700 hover:text-orange-500">Política de Privacidad</a>
+        </p>
+        <p><a routerLink="/terminos" class="text-gray-700 hover:text-orange-500">Términos y Condiciones</a></p>
+    </footer>
+</div>
