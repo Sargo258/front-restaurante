@@ -32,6 +32,7 @@ export class LoginComponent {
   onSubmit() {
     this.loginForm.markAllAsTouched();
     if (this.loginForm.invalid) {
+      this.showAlertModal('error', 'Please fill in all fields correctly.');
       return;
     }
 
@@ -55,6 +56,11 @@ export class LoginComponent {
     this.alertType = type;
     this.alertMessage = message;
     this.showAlert = true;
+
+    // Forzar la actualización del moda
+    setTimeout(() => {
+      this.showAlert = false;  // Cerrar el modal después de un tiempo
+    }, 1000);
   
   }
 }
