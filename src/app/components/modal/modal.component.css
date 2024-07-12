@@ -33,3 +33,10 @@
     }
   }
   
+  .card {
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #fcb69f; /* Borde naranja claro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 2rem;
+    border-radius: 0.5rem; /* Bordes redondeados */
+  }
