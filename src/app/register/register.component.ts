@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/authService';
+import { ModalComponent } from '../components/modalLogin/modal.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ModalComponent],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -16,10 +17,11 @@ export class RegisterComponent {
   showAlert: boolean = false;
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
+  showModal: boolean = false; // Control del modal
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-      userName: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -55,10 +57,14 @@ export class RegisterComponent {
   private showAlertModal(type: 'success' | 'error', message: string) {
     this.alertType = type;
     this.alertMessage = message;
-    this.showAlert = true;
+    this.showModal = true;
 
     setTimeout(() => {
-      this.showAlert = false; // Cerrar el modal después de un tiempo
+      this.showModal = false; // Cerrar el modal después de un tiempo
     }, 2000); // Tiempo en milisegundos
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']); // Ajusta la ruta según tu configuración
   }
 }

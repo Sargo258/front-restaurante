@@ -1,5 +1,5 @@
 .gradient-bg {
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #f77f00 100%);
+    background: linear-gradient(135deg, #ffecd2 0%, #ee764f 50%, #f77f00 100%);
   }
 
 
@@ -13,7 +13,7 @@
   
   .card {
     background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #fcb69f; /* Borde naranja claro */
+    border: 1px solid #f37c54; /* Borde naranja claro */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     padding: 2rem;
     border-radius: 0.5rem; /* Bordes redondeados */
