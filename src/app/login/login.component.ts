@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';  
 import { AuthService } from '../../service/authService';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../components/modal/modal.component';
+import { ModalComponent } from '../components/modalLogin/modal.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
   
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   
   loginForm: FormGroup;
   showAlert: boolean = false;
@@ -28,6 +28,13 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+  }
+  ngOnInit(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      // Redirige si ya hay un usuario autenticado
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   onSubmit() {
@@ -42,6 +49,9 @@ export class LoginComponent {
     this.authService.loginUser(userData).subscribe({
       next: (response) => {
         console.log('Login successful', response);
+        localStorage.setItem('user', JSON.stringify(response.user))
+        console.log('Login response:', response);
+        console.log(localStorage.getItem('user'));
         this.showAlertModal('success', 'Login successful');
         this.router.navigate(['/dashboard']);
       },
@@ -63,6 +73,7 @@ export class LoginComponent {
       this.showAlert = false;  // Cerrar el modal después de un tiempo
     }, 1000);
   }
+
   navigateToRegister() {
     this.router.navigate(['/register']); // Asegúrate de que esta ruta esté configurada
   }
