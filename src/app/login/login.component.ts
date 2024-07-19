@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';  
-import { AuthService } from '../../service/authService';
-import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../components/modalLogin/modal.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/authService';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule, ModalComponent],
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule, ModalComponent],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   
@@ -23,15 +21,18 @@ export class LoginComponent implements OnInit {
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
 
-  constructor( private fb: FormBuilder, private authService : AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
+
   ngOnInit(): void {
-    const user = localStorage.getItem('user');
-    if (user) {
+    // Verifica si ya hay un token en el localStorage
+    const token = localStorage.getItem('authToken');
+    console.log('Token en ngOnInit:', token); // Verifica el valor del token
+    if (token) {
       // Redirige si ya hay un usuario autenticado
       this.router.navigate(['/dashboard']);
     }
@@ -43,17 +44,20 @@ export class LoginComponent implements OnInit {
       this.showAlertModal('error', 'Please fill in all fields correctly.');
       return;
     }
-
-    const userData = this.loginForm.value;
-
-    this.authService.loginUser(userData).subscribe({
+  
+    const { email, password } = this.loginForm.value;
+  
+    this.authService.login(email, password).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        localStorage.setItem('user', JSON.stringify(response.user))
-        console.log('Login response:', response);
-        console.log(localStorage.getItem('user'));
+        localStorage.setItem('authToken', response.token); // Guardar el token en localStorage
+        localStorage.setItem('user', JSON.stringify(response.user)); // Asegúrate de que `response.user` tenga los datos correctos
         this.showAlertModal('success', 'Login successful');
-        this.router.navigate(['/dashboard']);
+        
+        // Retrasa el redireccionamiento para permitir que el modal se cierre
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 3000); // Debe coincidir con el tiempo del modal
       },
       error: (error) => {
         console.error('Login failed:', error);
@@ -61,23 +65,19 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-
+  
   private showAlertModal(type: 'success' | 'error', message: string) {
     console.log('Show alert modal with type:', type);
     this.alertType = type;
     this.alertMessage = message;
     this.showAlert = true;
 
-    // Forzar la actualización del moda
     setTimeout(() => {
       this.showAlert = false;  // Cerrar el modal después de un tiempo
-    }, 1000);
+    }, 3000); // Cambié el tiempo a 3 segundos para que el usuario pueda leer el mensaje
   }
 
   navigateToRegister() {
     this.router.navigate(['/register']); // Asegúrate de que esta ruta esté configurada
   }
 }
-  
-
-

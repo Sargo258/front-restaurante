@@ -1,7 +1,7 @@
 <div class="layout bg-gray-100 min-h-screen flex flex-col">
     <header class="bg-orange-500 text-white p-4 shadow-md">
         <div class="flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl md:text-5xl font-bold">Fast-Food</h1>
+            <h1 class="text-7x2 md:text-7xl font-bold">Fast-Food</h1>
             <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-10">
                 <div class="flex items-center">
                     <mat-icon>access_time</mat-icon>
@@ -15,7 +15,8 @@
             <div class="text-center md:text-right px-4 md:px-8">
                 <div *ngIf="user" class="text-lg font-bold">
                     <p class="text-md">Bienvenido, {{ user.username }}!</p>
-                    <button (click)="logout()" class="border border-white text-white flex items-center px-3 py-1 rounded text-sm hover:bg-white hover:text-orange-500 transition">
+                    <button (click)="logout()"
+                        class="border border-white text-white flex items-center px-3 py-1 rounded text-sm hover:bg-white hover:text-orange-500 transition">
                         <mat-icon class="mr-1">logout</mat-icon>
                         Cerrar sesión
                     </button>
@@ -26,7 +27,7 @@
             </div>
         </div>
     </header>
-    
+
     <!-- Menú de navegación para pantallas normales y grandes -->
     <nav class="bg-white hidden md:block">
         <div class="flex justify-end p-4 mx-4">
@@ -35,11 +36,11 @@
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
                 <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a>
                 </li>
-                <li><a routerLink="/about"
-                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre Nosotros</a></li>
+                <li><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
+                        Nosotros</a></li>
                 <li><a routerLink="/contacto"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
-                <li><a routerLink="/add-menu"
+                <li *ngIf="isAdmin()"><a routerLink="/add-menu"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li>
             </ul>
         </div>
@@ -54,11 +55,16 @@
         </div>
         <div [class.hidden]="!isMenuOpen" class="flex flex-col p-4 space-y-2">
             <ul class="flex flex-col space-y-2">
-                <li><a routerLink="/dashboard" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
-                <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a></li>
-                <li><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre Nosotros</a></li>
-                <li><a routerLink="/contacto" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
-                <li><a routerLink="/add-menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li>
+                <li><a routerLink="/dashboard"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
+                <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a>
+                </li>
+                <li><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
+                        Nosotros</a></li>
+                <li><a routerLink="/contacto"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
+                <li *ngIf="isAdmin()"><a routerLink="/add-menu"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li>
             </ul>
         </div>
     </nav>
@@ -69,7 +75,9 @@
 
     <footer class="bg-gray-200 text-center p-4">
         <p class="text-gray-600 text-sm md:text-base">Síguenos en redes sociales: [Enlaces]</p>
-        <p><a routerLink="/politica-privacidad" class="text-gray-700 hover:text-orange-500 text-sm md:text-base">Política de Privacidad</a></p>
-        <p><a routerLink="/terminos" class="text-gray-700 hover:text-orange-500 text-sm md:text-base">Términos y Condiciones</a></p>
+        <p><a routerLink="/politica-privacidad"
+                class="text-gray-700 hover:text-orange-500 text-sm md:text-base">Política de Privacidad</a></p>
+        <p><a routerLink="/terminos" class="text-gray-700 hover:text-orange-500 text-sm md:text-base">Términos y
+                Condiciones</a></p>
     </footer>
 </div>
