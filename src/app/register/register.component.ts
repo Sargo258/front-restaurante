@@ -24,7 +24,8 @@ export class RegisterComponent {
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      role: ['user', Validators.required] // Agregar el campo de rol
     }, { validators: this.passwordMatchValidator });
   }
 
@@ -35,11 +36,13 @@ export class RegisterComponent {
   onSubmit() {
     this.registerForm.markAllAsTouched();
     if (this.registerForm.invalid) {
+      console.log('Form errors:', this.registerForm.errors);
       this.showAlertModal('error', 'Please fill in all fields correctly.');
       return;
     }
 
     const userData = this.registerForm.value;
+    console.log('User Data:', userData)
 
     this.authService.registerUser(userData).subscribe({
       next: (response) => {

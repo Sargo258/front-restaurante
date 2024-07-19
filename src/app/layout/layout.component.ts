@@ -32,7 +32,12 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
     this.user = null;
     this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+  }
+
+  isAdmin() {
+    return this.user && this.user.role === 'admin';
   }
 }
