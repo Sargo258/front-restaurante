@@ -22,12 +22,13 @@ export class MenuComponent implements OnInit {
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.loadMenuItems();
     this.getUserRole();
+    this.loadMenuItems();
   }
 
   loadMenuItems() {
-    this.menuService.getMenuItems().subscribe(
+    const isAdmin = this.userRole === 'admin';
+    this.menuService.getMenuItems(isAdmin).subscribe(
       menuItems => {
         this.menuItems = menuItems;
         this.filteredMenuItems = menuItems;
@@ -51,7 +52,8 @@ export class MenuComponent implements OnInit {
   }
 
   updateMenuItem(item: any) {
-    this.menuService.updateMenuItem(item.id, item).subscribe(
+    const updatedItem = { ...item, is_visible: item.is_visible ?? true };
+    this.menuService.updateMenuItem(item.id, updatedItem).subscribe(
       updatedItem => {
         const index = this.menuItems.findIndex(menuItem => menuItem.id === updatedItem.id);
         if (index !== -1) {

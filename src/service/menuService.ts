@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -15,8 +15,9 @@ export class MenuService {
     return this.http.post(this.menuUrl, menuData);
   };
 
-  getMenuItems(): Observable<any[]> {
-    return this.http.get<any[]>(this.menuUrl,);
+  getMenuItems(isAdmin: boolean = false): Observable<any[]> {
+    const params = new HttpParams().set('isAdmin', isAdmin ? 'true' : 'false');
+    return this.http.get<any[]>(this.menuUrl, { params });
   };
   
   updateMenuItem(id: number, updatedData: any): Observable<any> {

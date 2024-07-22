@@ -21,7 +21,8 @@ export class ModalMenuComponent {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]]
+      price: ['', [Validators.required, Validators.min(0)]],
+      is_visible: [true]
     });
   }
 
@@ -30,7 +31,8 @@ export class ModalMenuComponent {
       this.editForm.patchValue({
         name: this.selectedItem.name,
         description: this.selectedItem.description,
-        price: this.selectedItem.price
+        price: this.selectedItem.price,
+        is_visible: this.selectedItem.is_visible
       });
     }
   }
@@ -39,8 +41,8 @@ export class ModalMenuComponent {
     if (this.editForm.invalid || !this.selectedItem) {
       return;
     }
-    const { name, description, price } = this.editForm.value;
-    this.updateItem.emit({ ...this.selectedItem, name, description, price });
+    const { name, description, price, is_visible } = this.editForm.value;
+    this.updateItem.emit({ ...this.selectedItem, name, description, price, is_visible });
     this.closeModal.emit();
   }
 }
