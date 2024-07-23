@@ -15,8 +15,8 @@ export const routes: Routes = [
       { path: 'dashboard', loadComponent: () => import('./Home/dashboard.component').then(m => m.DashboardComponent) },
       { path: 'about', loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)},
       { path: 'add-menu', loadComponent: () => import('./add-menu/add-menu.component').then(m => m.AddMenuComponent), canActivate: [AdminGuard] },
-      { path: 'menu', loadComponent: () => import('./menu/menu.component').then(m => m.MenuComponent)}
-      // Agrega más rutas hijas aquí
+      { path: 'menu', loadComponent: () => import('./menu/menu.component').then(m => m.MenuComponent)},
+      { path: 'contact', loadComponent: () => import('./contact/contact.component').then(m => m.ContactComponent)},
     ],
     canActivate: [authGuard]
   },
