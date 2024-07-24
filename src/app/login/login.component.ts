@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   alertTitle: string = '';
   alertMessage: string = '';
   alertType: 'success' | 'error' = 'success';
+  passwordFieldType: string = 'password';
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -79,5 +80,9 @@ export class LoginComponent implements OnInit {
 
   navigateToRegister() {
     this.router.navigate(['/register']); // Asegúrate de que esta ruta esté configurada
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
