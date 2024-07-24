@@ -43,7 +43,21 @@ export class MenuComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userRole = user.role;
   }
+  rateItem(menuId: number, rating: number) {
+    const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
 
+    this.menuService.rateMenuItem(menuId, rating).subscribe(
+      () => {
+        alert('Rating submitted successfully');
+        this.loadMenuItems(); // Reload items to update average ratings
+      },
+      error => {
+        console.error('Failed to submit rating:', error);
+        alert('Failed to submit rating');
+      }
+    );
+  }
+  
   onSelectItem(item: any) {
     if (this.userRole !== 'admin') {
       return;

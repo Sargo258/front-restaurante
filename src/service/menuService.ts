@@ -22,5 +22,14 @@ export class MenuService {
   
   updateMenuItem(id: number, updatedData: any): Observable<any> {
     return this.http.put<any>(`${this.menuUrl}/${id}`, updatedData);
-  }
+  };
+
+  rateMenuItem(menuId: number, rating: number): Observable<any> {
+    const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
+    return this.http.post(`${this.menuUrl}/rate`, { menu_id: menuId, user_id: userId, rating });
+  };
+  
+  getFeaturedMenuItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.menuUrl}/featured`);
+  };
 }

@@ -5,15 +5,14 @@
   </section>
 
   <section class="mb-8">
-      <h3 class="text-2xl font-semibold">Platos Destacados</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bg-white p-4 rounded shadow">
-              <img src="https://cdn.pixabay.com/photo/2015/04/10/00/41/food-715542_1280.jpg" alt="Plato 1" class="w-full h-32 object-cover rounded">
-              <h4 class="mt-2 text-lg font-bold">Plato 1</h4>
-              <p class="text-gray-600">plato de fideos japoneses con pollo, arroz y verduras.</p>
-          </div>
-          <!-- Repite para otros platos -->
+    <h3 class="text-2xl font-semibold">Platos Destacados</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div *ngFor="let item of featuredMenuItems" class="bg-white p-4 rounded shadow">
+        <img [src]="item.image_url" alt="Plato Destacado" class="w-full h-32 object-cover rounded">
+        <h4 class="mt-2 text-lg font-bold">{{ item.name }}</h4>
+        <p class="text-gray-600">{{ item.description }}</p>
       </div>
+    </div>
   </section>
 
   <section class="mb-8">

@@ -29,6 +29,19 @@
       <img [src]="item.image_url" alt="{{ item.name }}" class="w-full h-auto rounded-lg mt-2 mb-2">
       <p class="text-gray-700">{{ item.description }}</p>
       <p class="text-gray-900 font-bold">{{ item.price | currency }}</p>
+
+      <!-- Calificación -->
+      <div class="mt-4">
+        <p class="font-semibold">Rate this item:</p>
+        <div class="flex space-x-2">
+          <button *ngFor="let star of [1, 2, 3, 4, 5]" 
+                  (click)="rateItem(item.id, star)" 
+                  class="text-yellow-500 hover:text-yellow-600 focus:outline-none">
+            ★
+          </button>
+        </div>
+      </div>
+
       <button *ngIf="userRole === 'admin'" class="bg-orange-500 text-white px-4 py-2 mt-2 rounded hover:bg-orange-600"
         (click)="onSelectItem(item)">
         Edit
