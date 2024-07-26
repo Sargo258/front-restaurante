@@ -5,15 +5,18 @@
   </section>
 
   <section class="mb-8">
-    <h3 class="text-2xl font-semibold">Platos Destacados</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div *ngFor="let item of featuredMenuItems" class="bg-white p-4 rounded shadow">
-        <img [src]="item.image_url" alt="Plato Destacado" class="w-full h-32 object-cover rounded">
-        <h4 class="mt-2 text-lg font-bold">{{ item.name }}</h4>
-        <p class="text-gray-600">{{ item.description }}</p>
+    <div class="text-center mb-6">
+      <h3 class="text-2xl font-semibold text-orange-800">Platos Destacados</h3>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto max-w-6xl">
+      <div *ngFor="let item of featuredMenuItems" class="bg-orange-50 p-6 rounded-lg shadow-lg">
+        <img [src]="item.image_url" alt="Plato Destacado" class="w-full h-32 object-cover rounded-lg">
+        <h4 class="mt-4 text-lg font-semibold text-orange-700">{{ item.name }}</h4>
+        <p class="mt-2 text-gray-700">{{ item.description }}</p>
       </div>
     </div>
   </section>
+  
 
   <section class="mb-8">
     <div class="bg-orange-50 p-6 rounded-lg shadow-lg mt-6 mb-5 mx-auto max-w-4xl">
