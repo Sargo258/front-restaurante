@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
         console.log('Login successful', response);
         localStorage.setItem('authToken', response.token); // Guardar el token en localStorage
         localStorage.setItem('user', JSON.stringify(response.user)); // Asegúrate de que `response.user` tenga los datos correctos
+        localStorage.setItem('user_id', response.user.id.toString())
         this.showAlertModal('success', 'Login successful');
         
         // Retrasa el redireccionamiento para permitir que el modal se cierre

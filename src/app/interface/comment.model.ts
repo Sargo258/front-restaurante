@@ -3,5 +3,5 @@ export interface Comments {
     user_id: number;
     text: string;
     created_at: string;
-    author: string; 
+    author?: string; 
   }
