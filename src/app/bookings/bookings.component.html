@@ -1,1 +1,47 @@
-<p>bookings works!</p>
+<section class="mb-8">
+    <div class="bg-orange-50 p-6 rounded-lg shadow-lg mt-6 mb-5 mx-auto max-w-4xl">
+        <h4 class="text-lg font-semibold mb-2 text-orange-700">Reserva una mesa</h4>
+        <form (ngSubmit)="makeReservation()" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="name" [(ngModel)]="reservation.name" name="name" required
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" id="email" [(ngModel)]="reservation.email" name="email" required
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
+                <input type="tel" id="phone" [(ngModel)]="reservation.phone" name="phone" required
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <label for="date" class="block text-sm font-medium text-gray-700">Fecha</label>
+                <input type="date" id="date" [(ngModel)]="reservation.date" name="date" required
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <label for="time" class="block text-sm font-medium text-gray-700">Hora</label>
+                <input type="time" id="time" [(ngModel)]="reservation.time" name="time" required
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <label for="people" class="block text-sm font-medium text-gray-700">Número de Personas</label>
+                <input type="number" id="people" [(ngModel)]="reservation.people" name="people" required min="1"
+                    class="mt-1 block w-full p-2 border border-orange-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+            </div>
+            <div>
+                <input type="hidden" [(ngModel)]="reservation.user_id" name="user_id">
+            </div>
+            <button type="submit"
+                class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                Reservar
+            </button>
+        </form>
+
+        <app-modal-bookings *ngIf="showModal" [message]="modalMessage" [type]="modalType" (close)="closeModal()">
+        </app-modal-bookings>
+    </div>
+</section>

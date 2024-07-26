@@ -8,6 +8,7 @@ import { Comments } from '../app/interface/comment.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommentsService {
   private commnetsUrl = `${environment.apiUrl}/comments`;
 
