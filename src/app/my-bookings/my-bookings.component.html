@@ -1,0 +1,18 @@
+<div *ngIf="reservations.length > 0; else noReservations">
+    <h2 class="text-2xl font-bold text-center my-4">Your Reservations</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div *ngFor="let reservation of reservations" class="bg-orange-50 p-4 rounded-lg shadow-md mb-4 mx-auto max-w-lg">
+        <p class="text-lg font-semibold text-orange-700"><strong>Name:</strong> {{ reservation.name }}</p>
+        <p class="text-gray-700"><strong>Email:</strong> {{ reservation.email }}</p>
+        <p class="text-gray-700"><strong>Phone:</strong> {{ reservation.phone }}</p>
+        <p class="text-gray-700"><strong>Date:</strong> {{ reservation.date }}</p>
+        <p class="text-gray-700"><strong>Time:</strong> {{ reservation.time }}</p>
+        <p class="text-gray-900 font-bold"><strong>People:</strong> {{ reservation.people }}</p>
+        <button *ngIf="reservation.id" (click)="softDeleteReservation(reservation.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #noReservations>
+    <p class="text-center text-gray-700">You have no reservations.</p>
+  </ng-template>
+  

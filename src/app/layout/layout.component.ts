@@ -40,4 +40,8 @@ export class LayoutComponent implements OnInit {
   isAdmin() {
     return this.user && this.user.role === 'admin';
   }
+
+  isUser() {
+    return this.user && this.user.role === 'user';
+  }
 }

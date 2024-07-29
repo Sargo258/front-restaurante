@@ -36,14 +36,18 @@
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
                 <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a>
                 </li>
-                <li><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
+                <li *ngIf="isUser()"><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
                         Nosotros</a></li>
-                <li><a routerLink="/contact"
+                <li *ngIf="isUser()"><a routerLink="/contact"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
-                <li><a routerLink="/bookings"
+                <li *ngIf="isUser()"><a routerLink="/bookings"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Reserva</a></li>
+                <li *ngIf="isUser()"><a routerLink="/my-bookings"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Mis Reservas</a></li>
                 <li *ngIf="isAdmin()"><a routerLink="/add-menu"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li>
+                <li *ngIf="isAdmin()"><a routerLink="/user-bookings"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Reservas</a></li>
             </ul>
         </div>
     </nav>
@@ -61,14 +65,18 @@
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Inicio</a></li>
                 <li><a routerLink="/menu" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Menú</a>
                 </li>
-                <li><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
+                <li *ngIf="isUser()"><a routerLink="/about" class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Sobre
                         Nosotros</a></li>
-                <li><a routerLink="/contact"
+                <li *ngIf="isUser()"><a routerLink="/contact"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Contacto</a></li>
                 <li><a routerLink="/bookings"
                         class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Reserva</a></li>
+                <li *ngIf="isUser()"><a routerLink="/my-bookings"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">mis reservas</a></li>
                 <li *ngIf="isAdmin()"><a routerLink="/add-menu"
-                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li>   
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Añadir Menú</a></li> 
+                <li *ngIf="isAdmin()"><a routerLink="/add-menu"
+                        class="text-gray-700 hover:text-orange-500 text-lg font-semibold">Reservas</a></li>  
             </ul>
         </div>
     </nav>
