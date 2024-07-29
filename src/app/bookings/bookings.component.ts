@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Reservation } from '../interface/bookings.model';
-import { BookingsServie } from '../../service/bookingsService';
+import { BookingsService } from '../../service/bookingsService';
 import { ModalBookingsComponent } from '../components/modal-bookings/modal-bookings.component';
 import { CommonModule } from '@angular/common';
 
@@ -30,7 +30,7 @@ export class BookingsComponent {
   modalMessage: string = '';
   modalType: 'success' | 'error' = 'success';
 
-  constructor(private bookingsService: BookingsServie) {}
+  constructor(private bookingsService: BookingsService) {}
 
   makeReservation() {
     this.reservation.user_id = this.getUserId();

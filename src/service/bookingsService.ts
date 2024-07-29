@@ -8,7 +8,7 @@ import { Reservation } from '../app/interface/bookings.model';
     providedIn: 'root'
   })
 
-  export class BookingsServie {
+  export class BookingsService {
     private bookingsUrl = `${environment.apiUrl}/reservations`;
 
     constructor(private http: HttpClient) {}
@@ -21,6 +21,10 @@ import { Reservation } from '../app/interface/bookings.model';
         return this.http.get<Reservation>(`${this.bookingsUrl}/${id}`);
     };
 
+    getReservationsByUserId(userId: number): Observable<Reservation[]> {
+        return this.http.get<Reservation[]>(`${this.bookingsUrl}/user/${userId}`);
+    };
+
     updateReservation(id: number, reservation: Reservation): Observable<Reservation> {
         return this.http.put<Reservation>(`${this.bookingsUrl}/${id}`, reservation);
     };
@@ -29,4 +33,7 @@ import { Reservation } from '../app/interface/bookings.model';
         return this.http.delete<void>(`${this.bookingsUrl}/${id}`);
     };
 
+    softDeleteReservation(id: number): Observable<any> {
+        return this.http.patch(`${this.bookingsUrl}/${id}`, {});
+    };
   }

@@ -17,7 +17,9 @@ export const routes: Routes = [
       { path: 'add-menu', loadComponent: () => import('./add-menu/add-menu.component').then(m => m.AddMenuComponent), canActivate: [AdminGuard] },
       { path: 'menu', loadComponent: () => import('./menu/menu.component').then(m => m.MenuComponent)},
       { path: 'contact', loadComponent: () => import('./contact/contact.component').then(m => m.ContactComponent)},
-      { path: 'bookings', loadComponent: () => import('./bookings/bookings.component').then(m => m.BookingsComponent)}
+      { path: 'bookings', loadComponent: () => import('./bookings/bookings.component').then(m => m.BookingsComponent)},
+      { path: 'my-bookings', loadComponent: () => import('./my-bookings/my-bookings.component').then(m => m.MyBookingsComponent)},
+      { path: 'user-bookings', loadComponent: () => import('./user-bookings/user-bookimgs.component').then(m => m.UserBookingsComponent)}
     ],
     canActivate: [authGuard]
   },
