@@ -19,7 +19,7 @@ export const routes: Routes = [
       { path: 'contact', loadComponent: () => import('./contact/contact.component').then(m => m.ContactComponent)},
       { path: 'bookings', loadComponent: () => import('./bookings/bookings.component').then(m => m.BookingsComponent)},
       { path: 'my-bookings', loadComponent: () => import('./my-bookings/my-bookings.component').then(m => m.MyBookingsComponent)},
-      { path: 'user-bookings', loadComponent: () => import('./user-bookings/user-bookimgs.component').then(m => m.UserBookingsComponent)}
+      { path: 'user-bookings', loadComponent: () => import('./user-bookings/user-bookings.component').then(m => m.UserBookingsComponent)}
     ],
     canActivate: [authGuard]
   },
