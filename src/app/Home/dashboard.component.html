@@ -1,7 +1,7 @@
 <main class="flex-grow p-4">
   <section class="text-center mb-8">
-      <h2 class="text-3xl font-bold">¡Bienvenido a Fast-Food!</h2>
-      <p class="mt-2 text-gray-600">Donde la calidad se encuentra con el sabor.</p>
+    <h2 class="text-3xl font-bold">¡Bienvenido a Fast-Food!</h2>
+    <p class="mt-2 text-gray-600">Donde la calidad se encuentra con el sabor.</p>
   </section>
 
   <section class="mb-8">
@@ -16,7 +16,6 @@
       </div>
     </div>
   </section>
-  
 
   <section class="mb-8">
     <div class="bg-orange-50 p-6 rounded-lg shadow-lg mt-6 mb-5 mx-auto max-w-4xl">
@@ -35,14 +34,20 @@
       </button>
     </div>
     
-        
     <!-- Contenedor de Testimonios -->
     <div *ngFor="let testimonial of testimonials" class="bg-orange-50 p-6 rounded-lg shadow-lg mb-6 mx-auto max-w-4xl">
       <blockquote>
         <p class="text-gray-700 text-lg mb-2">{{ testimonial.text }}</p>
         <cite class="block text-gray-600 text-sm">- {{ testimonial.author }}</cite>
       </blockquote>
+      <!-- Botón para eliminar, solo visible para administradores -->
+      <button
+        *ngIf="isAdmin"
+        (click)="deleteTestimonial(testimonial.id)"
+        class="mt-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+      >
+        Eliminar
+      </button>
     </div>
   </section>
-  
 </main>
