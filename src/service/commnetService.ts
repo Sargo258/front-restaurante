@@ -21,4 +21,8 @@ export class CommentsService {
   getTestimonials(): Observable<Comments[]> {
     return this.http.get<Comments[]>(this.commnetsUrl);
   }
+
+  deleteTestimonial(id: number): Observable<any> {
+    return this.http.delete(`${this.commnetsUrl}/${id}`);
+  }
 }

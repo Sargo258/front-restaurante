@@ -16,10 +16,14 @@ export class DashboardComponent implements OnInit{
   featuredMenuItems: any[] = [];
   testimonials: Comments[] = [];
   newTestimonial = '';
+  isAdmin = false;
+  userRole: string = '';
+
 
   constructor(private menuService: MenuService, private comentsService: CommentsService) {}
 
   ngOnInit(): void {
+    this.checkIfAdmin()
     this.loadFeaturedMenuItems();
     this.loadTestimonials();
   }
@@ -59,4 +63,34 @@ export class DashboardComponent implements OnInit{
       }
     );
   }
+
+  
+  checkIfAdmin(): void {
+    console.log('checkIfAdmin called');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log('User:', user);
+    if (user && user.role) {
+      this.isAdmin = user.role === 'admin';
+      console.log('Is Admin:', this.isAdmin);
+    } else {
+      console.log('User role not found');
+    }
+  }
+
+  deleteTestimonial(id: number): void {
+    if (!this.isAdmin) {
+      return;
+    }
+    this.comentsService.deleteTestimonial(id).subscribe(
+      () => {
+        this.loadTestimonials();
+      },
+      error => {
+        console.error('Failed to delete testimonial:', error);
+        alert('Failed to delete testimonial');
+      }
+    );
+  }
+
+  
 }
